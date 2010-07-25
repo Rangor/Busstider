@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="net.a2bsoft.buss"
+      android:versionCode="6"
+      android:versionName="0.4.2">
+     
+          
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+    <uses-library android:name="com.google.android.maps" />  
+        <activity android:name=".Bus"
+                  android:label="@string/app_name"
+                  >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="Semantic"></activity> 
+        <activity android:name="ToAndFrom" android:screenOrientation="portrait"></activity>
+        <activity android:name="MapMode"></activity>
+        
+        
+        
+
+    </application>
+    <uses-sdk android:minSdkVersion="3"
+    		  android:targetSdkVersion="4"
+    />
+
+
+
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+<!--  
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+-->
+
+</manifest> 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Header">
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">3dp</item>
+    </style>
+    <style name="Url">
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">1dp</item>
+    </style>
+    <style name="Url_small">
+        <item name="android:textSize">12sp</item>
+        <item name="android:padding">1dp</item>
+    </style>
+</resources>

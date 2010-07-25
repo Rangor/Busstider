@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Busstider</string>
+    <string name="app_get_query">Busstider - Hent Spørringer</string>
+    <string name="app_edit_query_list">Busstider - Rediger Spørringer</string>
+    <string name="app_edit_query">Busstider - Rediger Spørring</string>
+    <string name="about">Om Busstider</string>
+    <string name="share">Del busstider</string>
+    <string name="default_answer">Her kommer svaret</string>
+    <string name="no_notes">Ingen lagrede spørringer</string>
+    <string name="menu_insert">Legg til spørring</string>
+    <string name="menu_edit_view">Rediger spørringer</string>
+    <string name="menu_delete">Slett spørring</string>
+    <string name="title">Title</string>
+    <string name="body">Body</string>
+    <string name="confirm">Bekreft</string>
+    <string name="edit_note">Rediger spørring</string>
+    
+    <string name="send_button_text">Send spørring</string>
+    <string name="clear_button_text">Tøm svarfelt</string>
+    <string name="delete_button_text">Slett spørring</string>
+    
+    <string name="to_text_string">Til</string>
+    <string name="from_text_string">Fra</string>
+    
+    <string name="semantic_tab">Spør orakel</string>
+    <string name="toandfrom_tab">Fra A til B</string>
+    <string name="mapmode_tab">Kart</string>
+    
+    <string name="time_choices">Velg tid</string>
+    <string-array name="times_array">
+    	<item>Neste</item>
+        <item>Før</item>
+        <item>Etter</item>
+        <item>Være der til</item>
+    </string-array>
+    
+    <dimen name="sixteen_sp">16sp</dimen>
+    <dimen name="twenty_sp">20sp</dimen>
+    <dimen name="head_pad">5dp</dimen>
+    <dimen name="list_pad">3dp</dimen>
+    
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam erat ligula, condimentum vel pulvinar ut, sodales id velit. Cras et lacinia quam. Integer sit amet eros vitae ligula fermentum tristique. Nam leo elit, lobortis sit amet vulputate non, consectetur vitae lectus. Vestibulum rutrum vestibulum sem eget ultrices. Donec enim metus, scelerisque in consectetur eget, dignissim ac odio. In laoreet purus eget tortor ultrices in tempus neque mollis. Quisque leo arcu, iaculis sit amet dapibus in, scelerisque eu lectus. In hac habitasse platea dictumst. Suspendisse dignissim blandit est eget rutrum</string>
+    
+    <string name="about_no">
+    Busstider er en applikasjon for å sjekke busstider i Trondheim. Den bruker team-trafikk sitt buss orakel. Applikasjonen sender spørringen og motar svar derfra. Den er skrevet av Martin Syvertsen og er åpen kildekode lisensiert under lgpl. Den bruker kode fra NotePad eksempelet til Android Developer. Se nettsider under.
+    </string>
+    
+    <string name="url_1">
+    http://www.team-trafikk.no/
+    </string>
+    
+    <string name="url_2">
+    http://developer.android.com/
+    </string>
+    
+   <string name="url_3">
+    http://code.google.com/p/busstider/
+    </string>
+
+</resources>

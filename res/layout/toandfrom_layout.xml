@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+  
+  <LinearLayout
+      	xmlns:android="http://schemas.android.com/apk/res/android"
+  		android:orientation="horizontal"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		
+  		>
+	 <TextView
+	 	android:id="@+id/fromText"
+	 	android:layout_width="fill_parent"
+	 	android:layout_height="wrap_content"
+	 	android:text="@string/from_text_string"
+	 	android:layout_weight="6"
+	 	android:gravity="center"
+	 />
+	 <AutoCompleteTextView 
+	 	android:id="@+id/fromField"
+	 	android:layout_width="fill_parent"
+	 	android:layout_height="wrap_content"
+	    android:clickable="true"
+	    android:layout_weight="1"
+	 />
+ </LinearLayout>
+ <LinearLayout
+      	xmlns:android="http://schemas.android.com/apk/res/android"
+  		android:orientation="horizontal"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content" 
+  >
+		   <TextView
+		 	android:id="@+id/Text02"
+		 	android:layout_width="fill_parent"
+		 	android:layout_height="wrap_content"
+		 	android:text="Til"
+		 	android:layout_weight="6"
+		 	android:gravity="center"
+		 />
+		  <AutoCompleteTextView 
+		 	android:id="@+id/toField"
+		 	android:layout_width="fill_parent"
+		 	android:layout_height="wrap_content"
+		    android:clickable="true"
+		    android:layout_weight="1"
+		 />
+</LinearLayout>
+ <LinearLayout
+      	xmlns:android="http://schemas.android.com/apk/res/android"
+  		android:orientation="horizontal"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content" 
+  >
+		<Spinner 
+	        android:id="@+id/time_spinner"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:prompt="@string/time_choices"
+	        android:layout_weight="1"
+	    />
+		 <Button android:id="@+id/pickAfterTime"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:text="Change the time"
+        	android:layout_weight="1"
+        />
+		 
+ </LinearLayout>
+<LinearLayout
+      	xmlns:android="http://schemas.android.com/apk/res/android"
+  		android:orientation="horizontal"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content" 
+  >
+	  <Button 
+	 	android:id="@+id/switchButton"
+	 	android:text="Bytt til og fra"
+	 	android:layout_width="wrap_content"
+	 	android:layout_height="wrap_content"
+	 	android:layout_weight="1"
+	 />
+	 <Button 
+	 	android:id="@+id/sendButton"
+	 	android:text="Send spørring"
+	 	android:layout_width="wrap_content"
+	 	android:layout_height="wrap_content"
+	 	android:layout_weight="1"
+	 />
+ </LinearLayout>
+
+
+ <TextView
+ 	android:id="@+id/answerText"
+ 	android:layout_width="wrap_content"
+ 	android:layout_height="wrap_content"
+ />
+ 
+</LinearLayout>
+

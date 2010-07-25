@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent">
+ 
+    <com.google.android.maps.MapView 
+        android:id="@+id/mapView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:enabled="true"
+        android:clickable="true"
+        android:apiKey="0F2H_rDvwsxsIMBnNx7wxemAl9fY-rKySwnP8Gw"
+        />
+        <!--  
+        Apikey for: MacBook: 0F2H_rDvwsxsIMBnNx7wxemAl9fY-rKySwnP8Gw
+        Apikey for: iMac :  0F2H_rDvwsxsIMBnNx7wxemAl9fY-rKySwnP8Gw
+        Apikey for: signering med keystore på iMac: 0F2H_rDvwsxspmUEcN7iHjohs9mBq_hdDdSjIKA
+        Apikey for: Daniel sin laptop: apiKey="0mtNZtTYZwi3cwEDVwIyHryWd6Up5TEt0q8AdnA"
+      
+        macbook debug android:apiKey="0F2H_rDvwsxsIMBnNx7wxemAl9fY-rKySwnP8Gw"
+        
+        macbook signering: android:apiKey="0F2H_rDvwsxs7ajthS9QnJ7k2YfBU0esU6cGxRw"
+        -->
+ 
+</RelativeLayout>
