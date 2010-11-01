@@ -23,8 +23,8 @@ package net.a2bsoft.buss;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import org.json.JSONException;
-
+import net.a2bsoft.buss.db.QueryDb;
+import net.a2bsoft.buss.http.SendQuery;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -46,7 +46,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class Semantic extends ListActivity implements TextWatcher {
@@ -63,8 +62,12 @@ public class Semantic extends ListActivity implements TextWatcher {
 	private boolean textEdited;
 	private long lastQueryId;
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		
+		Bus.tracker.trackPageView("/Semantic");
+		
 		setContentView(R.layout.semantic_layout);
         mDbHelper = new QueryDb(this);
         mDbHelper.open();
@@ -87,6 +90,12 @@ public class Semantic extends ListActivity implements TextWatcher {
         sendQueryButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
+		        Bus.tracker.trackEvent(
+		                "Clicks",  // Category
+		                "Send sporring",  // Action
+		                "semantic", // Label
+		                1);       // Value
+		        Bus.tracker.dispatch();
 				sendQuery();
 			}
 		});
@@ -94,8 +103,12 @@ public class Semantic extends ListActivity implements TextWatcher {
         clearAnswerButton = (Button)findViewById(R.id.clear_answer_button);
         clearAnswerButton.setOnClickListener(new View.OnClickListener() {
 			
-			public void onClick(View v) {
-				
+			public void onClick(View v) {	
+				Bus.tracker.trackEvent(
+		                "Clicks",  // Category
+		                "Tom svar",  // Action
+		                "semantic", // Label
+		                1);       // Value
 					answerText.setText("");
 				
 			}
@@ -186,17 +199,14 @@ public class Semantic extends ListActivity implements TextWatcher {
         	String query = item[0];
         	String returnText ="";
         	publishProgress();
-				try {
-					returnText = SendQuery.sendQueryJson(query);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+        	returnText = SendQuery.sendQueryJsoup(query);
+
 			return returnText;
         }
         
         @Override
 		protected void onProgressUpdate(Void...voids){
-        	dialog = ProgressDialog.show(Semantic.this, "", "Sp¿r bussorakelet, vennligst vent", true);
+        	dialog = ProgressDialog.show(Semantic.this, "", getString(R.string.sending_query), true);
         }
 
         @Override
@@ -235,6 +245,12 @@ public class Semantic extends ListActivity implements TextWatcher {
 		editor.putInt("DEFAULT_GUI", newGui);
 		editor.commit();
 	}
+    
+    @Override
+    protected void onDestroy() {
+      super.onDestroy();
+      Bus.tracker.stop();
+    }
 	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {

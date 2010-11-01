@@ -1,8 +1,10 @@
 package net.a2bsoft.buss;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.a2bsoft.buss.http.SendQuery;
+import net.a2bsoft.buss.parser.BusStop;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,7 +19,6 @@ public class BusstopOverlay extends ItemizedOverlay<OverlayItem> {
 	
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 	Context mContext;
-	String travelFrom, travelTo;
 	private Drawable marker;
 	private ProgressDialog dialog;
 	private Drawable fromDrawable;
@@ -31,6 +32,11 @@ public class BusstopOverlay extends ItemizedOverlay<OverlayItem> {
 	}
 	
 	public BusstopOverlay(Drawable defaultMarker, Context context) {
+		  this(defaultMarker);
+		  mContext = context;
+		}
+	
+	public BusstopOverlay(Drawable defaultMarker, Context context, List<BusStop> list) {
 		  this(defaultMarker);
 		  mContext = context;
 		}
@@ -72,20 +78,19 @@ public class BusstopOverlay extends ItemizedOverlay<OverlayItem> {
 //	  dialog.show();
 //	  if(travelFrom == null){
 	  AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-	  if(travelFrom == null){
+	  if(MapMode.fromString == null){
 	  builder.setMessage("Reise fra " + item.getTitle() + "?")
 	         .setCancelable(false)
 	         .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int id) {
 	            	  marker = mContext.getResources().getDrawable(R.drawable.busstop_blue);
 	            	  if(MapMode.fromItem != null){
-//	            		  setMarker(fromItem, marker);
 	            		  setMarker(MapMode.fromItem, marker);
 	            	  }
 	            	  if(MapMode.toItem != null){
 	            	  	  setMarker(MapMode.toItem, marker);
 	            	  }
-	                  travelFrom = (item.getTitle());
+	            	  MapMode.fromString = (item.getTitle());
 	                  fromDrawable = mContext.getResources().getDrawable(R.drawable.busstop_from);
 	            	  MapMode.fromItem = item;
 	                  setMarker(item,fromDrawable);
@@ -101,7 +106,7 @@ public class BusstopOverlay extends ItemizedOverlay<OverlayItem> {
 	         .setCancelable(false)
 	         .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
 	             public void onClick(DialogInterface dialog, int id) {
-	                  travelTo = (item.getTitle());
+	                  MapMode.toString = (item.getTitle());
 	                  MapMode.toItem = item;
 	                  toDrawable = mContext.getResources().getDrawable(R.drawable.busstop_to);
 	                  setMarker(item,toDrawable);
@@ -112,16 +117,10 @@ public class BusstopOverlay extends ItemizedOverlay<OverlayItem> {
 			                "mapmode", // Label
 			                1);       // Value
 	  				  Bus.tracker.dispatch();
-	                  new getAnswerTask().execute("Neste fra "+ travelFrom + " til " + travelTo);
+	                  new getAnswerTask().execute("Neste fra "+ MapMode.fromString + " til " + MapMode.toString);
 	                  
-	                  travelFrom = null;
-	                  travelTo = null;
-	                  
-//	                  Toast.makeText(mContext, returnText, Toast.LENGTH_SHORT).show();
-//	            	  AlertDialog.Builder resultDialog = new AlertDialog.Builder(mContext);
-//	            	  resultDialog.setTitle("Svar");
-//	            	  resultDialog.setMessage(returnText);
-//	            	  resultDialog.show();
+	                  MapMode.fromString = null;
+	                  MapMode.toString = null;
 	             }
 	         })
 	         .setNegativeButton("Nei", new DialogInterface.OnClickListener() {

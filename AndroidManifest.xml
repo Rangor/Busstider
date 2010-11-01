@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="net.a2bsoft.buss"
-      android:versionCode="6"
-      android:versionName="0.4.2">
+      android:versionCode="7"
+      android:versionName="0.5.0"
+      android:debuggable="true">
      
           
     <application android:icon="@drawable/icon" android:label="@string/app_name">
@@ -17,23 +18,24 @@
         </activity>
         
         <activity android:name="Semantic"></activity> 
-        <activity android:name="ToAndFrom" android:screenOrientation="portrait"></activity>
+        <activity android:name="ToAndFrom"></activity>
         <activity android:name="MapMode"></activity>
         
         
         
 
     </application>
-    <uses-sdk android:minSdkVersion="3"
-    		  android:targetSdkVersion="4"
+    <uses-sdk 
+    	android:minSdkVersion="3"
+    	android:targetSdkVersion="4"
     />
 
 
 
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-<!--  
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
--->
+
 
 </manifest> 

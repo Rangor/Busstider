@@ -48,6 +48,7 @@ public class QueryDb {
     public static final String KEY_PLACEID="_id";
     public static final String KEY_PLACENAME="place_name";
     
+    public static final String KEY_STOP_ID="_id";
     public static final String KEY_STOP_NAME="name";
     public static final	String KEY_STOP_LATITUDE="latitude";
     public static final String KEY_STOP_LONGITUDE="longitude";
@@ -70,7 +71,7 @@ public class QueryDb {
     
     private static final String DATABASE_BUSSTOP_TABLE = "busstops";
     private static final String DATABASE_CREATE_BUSSTOP =
-    	"create table busstops (_id integer primary key not null, name varchar(150) unique not null, latitude real not null, longitude real not null);";
+    	"create table busstops (_id integer primary key autoincrement, name varchar(150) not null, latitude real not null, longitude real not null);";
     
     
     private static final String DATABASE_NAME = "data";

@@ -11,10 +11,13 @@
     <string name="menu_insert">Legg til spørring</string>
     <string name="menu_edit_view">Rediger spørringer</string>
     <string name="menu_delete">Slett spørring</string>
+    <string name="send_query">Send spørring</string>
     <string name="title">Title</string>
     <string name="body">Body</string>
     <string name="confirm">Bekreft</string>
     <string name="edit_note">Rediger spørring</string>
+    
+    <string name="sending_query">Spør bussorakelet, vennligst vent</string>
     
     <string name="send_button_text">Send spørring</string>
     <string name="clear_button_text">Tøm svarfelt</string>

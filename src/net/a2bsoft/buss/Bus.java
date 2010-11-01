@@ -16,6 +16,8 @@
  */
 package net.a2bsoft.buss;
 
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
+
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,8 +28,12 @@ import android.widget.TabHost;
 public class Bus extends TabActivity {
 	
 	public static final String PREFS_NAME = "MyPrefsFile";
+	public static final String TRACKER_UA = "UA-11054626-4";
+	
+	public static GoogleAnalyticsTracker tracker;
 	
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main);
@@ -35,6 +41,11 @@ public class Bus extends TabActivity {
 	    TabHost tabHost = getTabHost();
 	    TabHost.TabSpec spec;
 	    Intent intent;
+	    
+		//Google Analytics tracker object
+		tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.start(Bus.TRACKER_UA, this);
+		tracker.trackPageView("/0_5_0_Code_7");
 	    
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
@@ -52,11 +63,11 @@ public class Bus extends TabActivity {
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 	    
-//	    intent = new Intent().setClass(this, MapMode.class);
-//	    spec = tabHost.newTabSpec("mapmode").setIndicator(res.getString(R.string.mapmode_tab),
-//	                      res.getDrawable(R.drawable.ic_tab_mapmode))
-//	                  .setContent(intent);
-//	    tabHost.addTab(spec);
+	    intent = new Intent().setClass(this, MapMode.class);
+	    spec = tabHost.newTabSpec("mapmode").setIndicator(res.getString(R.string.mapmode_tab),
+	                      res.getDrawable(R.drawable.ic_tab_mapmode))
+	                  .setContent(intent);
+	    tabHost.addTab(spec);
 	    
 	    tabHost.setCurrentTab(settings.getInt("DEFAULT_GUI", 1));
 	}

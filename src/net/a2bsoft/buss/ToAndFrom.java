@@ -18,8 +18,8 @@ package net.a2bsoft.buss;
 
 import java.util.Calendar;
 
-import org.json.JSONException;
-
+import net.a2bsoft.buss.db.QueryDb;
+import net.a2bsoft.buss.http.SendQuery;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -48,14 +48,12 @@ public class ToAndFrom extends Activity {
 	private AutoCompleteTextView fromTextField;
 	private AutoCompleteTextView toTextField;
 	private TextView answerText;
-	private String toString;
-	private String fromString;
-	private String answerString;
+
 	private String timeChoiceString;
 	private QueryDb mDbHelper;
 	private Spinner timeSpinner;
 	
-    private TextView mTimeDisplay;
+
     private Button mPickTime;
 
     private int mHour;
@@ -64,9 +62,13 @@ public class ToAndFrom extends Activity {
     static final int TIME_DIALOG_ID = 0;
     
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.toandfrom_layout);
+        
+		//Google Analytics tracker object
+        Bus.tracker.trackPageView("/Toandfrom");
         
         mDbHelper = new QueryDb(this);
         mDbHelper.open();
@@ -90,6 +92,12 @@ public class ToAndFrom extends Activity {
         sendQueryButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
+				Bus.tracker.trackEvent(
+		                "Clicks",  // Category
+		                "Send sporring",  // Action
+		                "toandfrom", // Label
+		                1);       // Value
+				Bus.tracker.dispatch();
 				sendQuery();
 			}
 		});
@@ -98,12 +106,22 @@ public class ToAndFrom extends Activity {
         switchButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
+				Bus.tracker.trackEvent(
+		                "Clicks",  // Category
+		                "Bytt sted",  // Action
+		                "toandfrom", // Label
+		                1);       // Value
 				switchDestinations();
 			}
 		});
         mPickTime = (Button) findViewById(R.id.pickAfterTime);
         mPickTime.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+				Bus.tracker.trackEvent(
+		                "Clicks",  // Category
+		                "Bytt tid",  // Action
+		                "toandfrom", // Label
+		                1);       // Value
                 showDialog(TIME_DIALOG_ID);
             }
         });
@@ -141,12 +159,12 @@ public class ToAndFrom extends Activity {
 				query = query + " etter " + mPickTime.getText().toString() ;
 			}
 			
-			if(timeChoiceString.equals("F¿r")){
-				query = query + " f¿r " + mPickTime.getText().toString() ;
+			if(timeChoiceString.equals("Fï¿½r")){
+				query = query + " fï¿½r " + mPickTime.getText().toString() ;
 			}
 			
-			if(timeChoiceString.equals("V¾re der til")){
-				query = query +" for Œ v¾re der til " + mPickTime.getText().toString() ;
+			if(timeChoiceString.equals("Vï¿½re der til")){
+				query = query +" for ï¿½ vï¿½re der til " + mPickTime.getText().toString() ;
 			}
 			
 			
@@ -166,21 +184,13 @@ public class ToAndFrom extends Activity {
         	String query = item[0];
         	String returnText ="";
         	publishProgress();
-        	
-				
-				try {
-					returnText = SendQuery.sendQueryJson(query);
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
+			returnText = SendQuery.sendQueryJsoup(query);
 			return returnText;
         }
         
         @Override
 		protected void onProgressUpdate(Void...voids){
-        	dialog = ProgressDialog.show(ToAndFrom.this, "", "Sp¿r bussorakelet, vennligst vent", true);
+        	dialog = ProgressDialog.show(ToAndFrom.this, "", getString(R.string.sending_query), true);
         }
 
         @Override
@@ -213,7 +223,6 @@ public class ToAndFrom extends Activity {
         // Create an array to specify the fields we want to display in the list (only TITLE)
         String[] db_places = new String[placesCursor.getCount()];
         if(placesCursor.moveToFirst()){
-        	String name;
         	int nameColumn = placesCursor.getColumnIndex(QueryDb.KEY_PLACENAME);
         	int counter = 0;
         
@@ -282,5 +291,11 @@ public class ToAndFrom extends Activity {
         	outState.putString("LAST_TO", toTextField.getText().toString());
         	outState.putString("LAST_FROM", fromTextField.getText().toString());
     	}
+        
+        @Override
+        protected void onDestroy() {
+          super.onDestroy();
+          Bus.tracker.stop();
+        }
 
 }

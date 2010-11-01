@@ -9,17 +9,25 @@
         android:layout_height="fill_parent"
         android:enabled="true"
         android:clickable="true"
-        android:apiKey="0F2H_rDvwsxsIMBnNx7wxemAl9fY-rKySwnP8Gw"
+        android:apiKey="0F2H_rDvwsxsQEi3Z75BM4EM1LKRpbZLqpfczTw"
         />
         <!--  
-        Apikey for: MacBook: 0F2H_rDvwsxsIMBnNx7wxemAl9fY-rKySwnP8Gw
-        Apikey for: iMac :  0F2H_rDvwsxsIMBnNx7wxemAl9fY-rKySwnP8Gw
-        Apikey for: signering med keystore på iMac: 0F2H_rDvwsxspmUEcN7iHjohs9mBq_hdDdSjIKA
-        Apikey for: Daniel sin laptop: apiKey="0mtNZtTYZwi3cwEDVwIyHryWd6Up5TEt0q8AdnA"
-      
-        macbook debug android:apiKey="0F2H_rDvwsxsIMBnNx7wxemAl9fY-rKySwnP8Gw"
+
+      	macbook pro debug: 0F2H_rDvwsxsdMdwgOqfZmiOai-FzaD29WT8PyQ
         
         macbook signering: android:apiKey="0F2H_rDvwsxs7ajthS9QnJ7k2YfBU0esU6cGxRw"
+        
+        market publisering: 0F2H_rDvwsxsQEi3Z75BM4EM1LKRpbZLqpfczTw
+        
+        0F2H_rDvwsxsQEi3Z75BM4EM1LKRpbZLqpfczTw
+		This key is good for all apps signed with your certificate whose fingerprint is:
+		E8:D0:E0:42:82:7F:75:A5:56:E1:B1:62:2F:90:80:E2
+		Here is an example xml layout to get you started on your way to mapping glory:
+              <com.google.android.maps.MapView
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:apiKey="0F2H_rDvwsxsQEi3Z75BM4EM1LKRpbZLqpfczTw"
+                 />
         -->
  
 </RelativeLayout>
