@@ -20,19 +20,34 @@
 
 package net.a2bsoft.buss.http;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 public class SendQuery {
 	
 	
-	public static String sendQueryJsoup(String query){
+	public static String sendQueryBusstuc(String query){
 		
 		String ans = "No answer";
 		
@@ -61,5 +76,49 @@ public class SendQuery {
 		
 		return ans;
 	}
+	
+    public static String sendQuery(String query){
+    	
+    	try {
+			query = URLEncoder.encode(query, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return e.getMessage();
+		}
+    	URL url = null;
+		try {
+			url = new URL("http://www.atb.no/xmlhttprequest.php?service=routeplannerOracle.getOracleAnswer&question="+ query);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+    	
+    	String result = null;
+		HttpParams my_httpParams = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(my_httpParams,30000);
+        HttpConnectionParams.setSoTimeout(my_httpParams,30000);
+    	HttpClient client = new DefaultHttpClient(my_httpParams);
+    	HttpGet get = new HttpGet(url.toString());
+    	HttpResponse resp;
+    	
+    	
+    	try {
+			resp = client.execute(get);
+			InputStream data = resp.getEntity().getContent();
+			result = new BufferedReader(new InputStreamReader(data)).readLine();
+			
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return sendQueryBusstuc(query);
+//			return e.getMessage();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return sendQueryBusstuc(query);
+//			return e.getMessage();
+		}
+    	
+    	return result;
+    }
 	
 }

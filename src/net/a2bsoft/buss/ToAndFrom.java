@@ -184,7 +184,7 @@ public class ToAndFrom extends Activity {
         	String query = item[0];
         	String returnText ="";
         	publishProgress();
-			returnText = SendQuery.sendQueryJsoup(query);
+			returnText = SendQuery.sendQuery(query);
 			return returnText;
         }
         

@@ -45,7 +45,7 @@ public class Bus extends TabActivity {
 		//Google Analytics tracker object
 		tracker = GoogleAnalyticsTracker.getInstance();
 		tracker.start(Bus.TRACKER_UA, this);
-		tracker.trackPageView("/0_5_0_Code_7");
+		tracker.trackPageView("/0_5_2_Code_9");
 	    
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 

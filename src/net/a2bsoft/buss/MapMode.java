@@ -21,7 +21,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.a2bsoft.buss.db.QueryDb;
-import net.a2bsoft.buss.http.SendQuery;
 import net.a2bsoft.buss.parser.BusStop;
 import net.a2bsoft.buss.parser.SaxFeedParser;
 import android.app.AlertDialog;
@@ -40,7 +39,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -252,44 +250,6 @@ public class MapMode extends MapActivity implements LocationListener {
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putBoolean("HAS_READ_INSTRUCTIONS", true);
 		editor.commit();
-	}
-
-
-	public void sendQuery(String fromString, String toString){
-		//		String query = queryField.getText().toString();
-		String query = "Neste fra "+fromString+" til "+ toString;
-		//		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);  
-		//		imm.hideSoftInputFromWindow(queryField.getWindowToken(), 0);  
-		new getAnswerTask().execute(query);   
-	}
-
-	private class getAnswerTask extends AsyncTask<String, Void, String> {
-		@Override
-		protected String doInBackground(String... item) {
-			String query = item[0];
-			String returnText ="";
-			publishProgress();
-			returnText = SendQuery.sendQueryJsoup(query);
-			
-			return returnText;
-		}
-
-		@Override
-		protected void onProgressUpdate(Void...voids){
-			dialog = ProgressDialog.show(MapMode.this, "", getString(R.string.sending_query), true);
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			dialog.dismiss();
-			Toast.makeText(getBaseContext(), result, Toast.LENGTH_SHORT).show();
-			//        	if(textEdited){
-			//        		addQuery();
-			//        	}else{
-			//        		updateQuery();
-			//        	}
-		}
-
 	}
 	
 	private class populateMapWithBusstopsTask extends AsyncTask<String, Integer, String>{

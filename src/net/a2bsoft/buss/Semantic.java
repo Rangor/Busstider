@@ -199,7 +199,8 @@ public class Semantic extends ListActivity implements TextWatcher {
         	String query = item[0];
         	String returnText ="";
         	publishProgress();
-        	returnText = SendQuery.sendQueryJsoup(query);
+//        	returnText = SendQuery.sendQueryJsoup(query);
+        	returnText = SendQuery.sendQuery(query);
 
 			return returnText;
         }
