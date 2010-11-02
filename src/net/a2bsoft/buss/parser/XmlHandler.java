@@ -3,8 +3,6 @@ package net.a2bsoft.buss.parser;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.a2bsoft.buss.db.QueryDb;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -13,8 +11,6 @@ public class XmlHandler extends DefaultHandler{
     private List<BusStop> busstops;
     private BusStop currentBusStop;
     private StringBuilder builder;
-    private int counter;
-    private QueryDb mDbHelper;
     
     public List<BusStop> getNames(){
         return this.busstops;
@@ -46,7 +42,6 @@ public class XmlHandler extends DefaultHandler{
         super.startDocument();
         busstops = new ArrayList<BusStop>();
         builder = new StringBuilder();
-        counter = 0;
 //        mDbHelper = new QueryDb(context);
     }
 
