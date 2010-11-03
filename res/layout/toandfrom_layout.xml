@@ -93,12 +93,15 @@
 	 />
  </LinearLayout>
 
-
+<ScrollView
+	    android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
  <TextView
  	android:id="@+id/answerText"
  	android:layout_width="wrap_content"
  	android:layout_height="wrap_content"
+ 	android:text="Masse tekst Masse tekst  Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst"
  />
- 
+ </ScrollView>
 </LinearLayout>
 

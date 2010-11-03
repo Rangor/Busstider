@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="net.a2bsoft.buss"
-      android:versionCode="9"
-      android:versionName="0.5.2"
+      android:versionCode="10"
+      android:versionName="0.5.3"
       android:debuggable="true">
      
           
@@ -27,8 +27,8 @@
 
     </application>
     <uses-sdk 
-    	android:minSdkVersion="3"
-    	android:targetSdkVersion="4"
+    	android:minSdkVersion="4"
+    	android:targetSdkVersion="7"
     />
 
 
