@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="Semantic"></activity> 
+        <activity android:name="Semantic"></activity>
         <activity android:name="ToAndFrom"></activity>
         <activity android:name="MapMode"></activity>
         
@@ -28,8 +28,12 @@
     </application>
     <uses-sdk 
     	android:minSdkVersion="4"
-    	android:targetSdkVersion="7"
+    	android:targetSdkVersion="9"
     />
+
+    <uses-feature android:name="android.hardware.location"
+                  android:required="false"
+                  />
 
 
 

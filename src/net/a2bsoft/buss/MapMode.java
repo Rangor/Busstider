@@ -56,7 +56,7 @@ public class MapMode extends MapActivity implements LocationListener {
 	public static double mylat, mylng;
 	private ProgressDialog dialog;
 	private QueryDb mDbHelper;
-	private List<BusStop> bussStopList;
+	private ArrayList<OverlayItem> bussStopList;
 	public static OverlayItem fromItem;
 	public static OverlayItem toItem;
 	public static String fromString;
@@ -120,14 +120,14 @@ public class MapMode extends MapActivity implements LocationListener {
         	
       	  AlertDialog.Builder builder = new AlertDialog.Builder(MapMode.this);
     	  
-    	  builder.setMessage("Kartmodus krever nedlasting av posisjonsdata til bussholdeplasser, vil du gjøre dette nå?")
+    	  builder.setMessage(getString(R.string.mapmode_download_data_question))
     	         .setCancelable(false)
-    	         .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+    	         .setPositiveButton(getString(R.string.answer_yes), new DialogInterface.OnClickListener() {
     	             public void onClick(DialogInterface dialog, int id) {
     	             	new populateBusstopsDbTask().execute("String");
     	             }
     	         })
-    	         .setNegativeButton("Nei", new DialogInterface.OnClickListener() {
+    	         .setNegativeButton(getString(R.string.answer_no), new DialogInterface.OnClickListener() {
     	             public void onClick(DialogInterface dialog, int id) {
     	                  dialog.cancel();
     	             }
@@ -140,10 +140,9 @@ public class MapMode extends MapActivity implements LocationListener {
         }
         if(!settings.getBoolean("HAS_READ_INSTRUCTIONS", false)){
       	  AlertDialog.Builder secondbuilder = new AlertDialog.Builder(MapMode.this);
-    	  secondbuilder.setMessage("Vent på at holdeplassene skal tegnes (tar litt tid). Trykk på holdeplassen du vil reise fra." +
-    	  		" Trykk så på holdeplassen du vil reise til.")
+    	  secondbuilder.setMessage(getString(R.string.mapmode_instructions))
     	         .setCancelable(false)
-    	         .setTitle("Hvordan bruke kartmodus")
+    	         .setTitle(getString(R.string.mapmode_instructions_title))
     	         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
     	             public void onClick(DialogInterface dialog, int id) {
     	            	 setViewedInstructions();
@@ -162,23 +161,21 @@ public class MapMode extends MapActivity implements LocationListener {
 	}
 	
 	public void populateBusstopList(){
+
 		stopsCursor = mDbHelper.fetchAllBusstops();
-        bussStopList = new ArrayList<BusStop>();
+        bussStopList = new ArrayList<OverlayItem>();
         if(stopsCursor.moveToFirst()){
         	int nameColumn = stopsCursor.getColumnIndex(QueryDb.KEY_STOP_NAME);
         	int latColumn = stopsCursor.getColumnIndex(QueryDb.KEY_STOP_LATITUDE);
         	int lngColumn = stopsCursor.getColumnIndex(QueryDb.KEY_STOP_LONGITUDE);
         
         do {
-        	BusStop tempStop = new BusStop();
-        	tempStop.setName(stopsCursor.getString(nameColumn));
-        	tempStop.setLng(stopsCursor.getDouble(lngColumn));
-        	tempStop.setLat(stopsCursor.getDouble(latColumn));
-        	tempStop.setGpoint(
+        	GeoPoint tempGeoPoint =
         			new GeoPoint( 
-        			(int)(tempStop.getLatitude() * 1E6),
-        			(int)(tempStop.getLongitude()* 1E6)));
-        	bussStopList.add(tempStop);
+        			(int)(stopsCursor.getDouble(latColumn) * 1E6),
+        			(int)(stopsCursor.getDouble(lngColumn)* 1E6));
+
+        	bussStopList.add(new OverlayItem(tempGeoPoint, stopsCursor.getString(nameColumn),"Bussholdeplass"));
 //        	String tempString = " " + tempStop.getLatitude() + tempStop.getLongitude();
 //        	Log.w("array creation", tempString);
         	
@@ -257,9 +254,7 @@ public class MapMode extends MapActivity implements LocationListener {
 		@Override
 		protected void onPreExecute() {
 			dialog = new ProgressDialog(MapMode.this);
-			dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			dialog.setMax(bussStopList.size());
-			dialog.setMessage("Tegner holdeplasser på kart");
+			dialog.setMessage(getString(R.string.mapmode_drawing_places_message));
 			dialog.setCancelable(false);
 			dialog.show();
 		}
@@ -267,31 +262,8 @@ public class MapMode extends MapActivity implements LocationListener {
 		@Override
 		protected synchronized String doInBackground(String... arg0){
 			
-			BusstopOverlay itemizedoverlay_first = new BusstopOverlay(busstopDrawable, MapMode.this);
-			BusstopOverlay itemizedoverlay_second = new BusstopOverlay(busstopDrawable, MapMode.this);
-			BusstopOverlay itemizedoverlay_third = new BusstopOverlay(busstopDrawable, MapMode.this);
-			BusstopOverlay itemizedoverlay_fourth = new BusstopOverlay(busstopDrawable, MapMode.this);
-			Iterator<BusStop> tempIterator = bussStopList.iterator();
-			publishProgress(0);
-			while (tempIterator.hasNext()){
-				BusStop tempStop = tempIterator.next();
-				OverlayItem tempItem = new OverlayItem(tempStop.getGeoPoint(), tempStop.getName(),"Bussholdeplass");
-//				itemizedoverlay_first.addOverlay(tempItem);
-				if(itemizedoverlay_first.size() < 70){
-					itemizedoverlay_first.addOverlay(tempItem);
-				}else if(itemizedoverlay_second.size() < 70){
-					itemizedoverlay_second.addOverlay(tempItem);
-				}else if(itemizedoverlay_third.size() < 70){
-					itemizedoverlay_third.addOverlay(tempItem);
-				}else{
-					itemizedoverlay_fourth.addOverlay(tempItem);
-				}
-				publishProgress(itemizedoverlay_first.size()+itemizedoverlay_second.size()+itemizedoverlay_third.size()+itemizedoverlay_fourth.size());
-			}
-				mapOverlays.add(itemizedoverlay_first);
-				mapOverlays.add(itemizedoverlay_second);
-				mapOverlays.add(itemizedoverlay_third);
-				
+			BusstopOverlay itemizedoverlay= new BusstopOverlay(busstopDrawable, MapMode.this, bussStopList);
+			mapOverlays.add(itemizedoverlay);
 			
 			return null;
 		}

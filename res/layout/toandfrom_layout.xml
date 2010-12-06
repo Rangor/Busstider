@@ -19,6 +19,7 @@
 	 	android:text="@string/from_text_string"
 	 	android:layout_weight="6"
 	 	android:gravity="center"
+        style="@style/toandfrom_description_text"
 	 />
 	 <AutoCompleteTextView 
 	 	android:id="@+id/fromField"
@@ -38,9 +39,10 @@
 		 	android:id="@+id/Text02"
 		 	android:layout_width="fill_parent"
 		 	android:layout_height="wrap_content"
-		 	android:text="Til"
+		 	android:text="@string/to_text_string"
 		 	android:layout_weight="6"
 		 	android:gravity="center"
+            style="@style/toandfrom_description_text"
 		 />
 		  <AutoCompleteTextView 
 		 	android:id="@+id/toField"
@@ -66,7 +68,7 @@
 		 <Button android:id="@+id/pickAfterTime"
         	android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
-        	android:text="Change the time"
+        	android:text="@string/toandfrom_change_time"
         	android:layout_weight="1"
         />
 		 
@@ -79,14 +81,14 @@
   >
 	  <Button 
 	 	android:id="@+id/switchButton"
-	 	android:text="Bytt til og fra"
+	 	android:text="@string/toandfrom_change_destinations"
 	 	android:layout_width="wrap_content"
 	 	android:layout_height="wrap_content"
 	 	android:layout_weight="1"
 	 />
 	 <Button 
 	 	android:id="@+id/sendButton"
-	 	android:text="Send spørring"
+	 	android:text="@string/send_query"
 	 	android:layout_width="wrap_content"
 	 	android:layout_height="wrap_content"
 	 	android:layout_weight="1"
@@ -100,7 +102,7 @@
  	android:id="@+id/answerText"
  	android:layout_width="wrap_content"
  	android:layout_height="wrap_content"
- 	android:text="Masse tekst Masse tekst  Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst Masse tekst"
+
  />
  </ScrollView>
 </LinearLayout>

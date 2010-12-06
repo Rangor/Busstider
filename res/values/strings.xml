@@ -16,12 +16,18 @@
     <string name="body">Body</string>
     <string name="confirm">Bekreft</string>
     <string name="edit_note">Rediger spørring</string>
+
+    <string name="answer_yes">Ja</string>
+    <string name="answer_no">Nei</string>
     
     <string name="sending_query">Spør bussorakelet, vennligst vent</string>
     
     <string name="send_button_text">Send spørring</string>
     <string name="clear_button_text">Tøm svarfelt</string>
     <string name="delete_button_text">Slett spørring</string>
+
+    <string name="toandfrom_change_destinations">Bytt til og fra</string>
+    <string name="toandfrom_change_time">Endre tid</string>
     
     <string name="to_text_string">Til</string>
     <string name="from_text_string">Fra</string>
@@ -29,6 +35,13 @@
     <string name="semantic_tab">Spør orakel</string>
     <string name="toandfrom_tab">Fra A til B</string>
     <string name="mapmode_tab">Kart</string>
+
+
+    <string name="mapmode_download_data_question">Kartmodus krever nedlasting av posisjonsdata til bussholdeplasser, vil du gjøre dette nå?</string>
+    <string name="mapmode_drawing_places_message">Tegner holdeplasser på kart</string>
+    <string name="mapmode_instructions">Vent på at holdeplassene skal tegnes (tar litt tid).
+    	  		                        Trykk så på holdeplassen du vil reise til.</string>
+    <string name="mapmode_instructions_title">Hvordan bruke kartmodus</string>
     
     <string name="time_choices">Velg tid</string>
     <string-array name="times_array">
