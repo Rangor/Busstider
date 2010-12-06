@@ -42,8 +42,6 @@ public class BusstopOverlay extends ItemizedOverlay<OverlayItem> {
         mContext = context;
         this.mOverlays = list;
         populate();
-        Log.w("Overlay",Integer.toString(this.mOverlays.size()));
-
 
     }
 
