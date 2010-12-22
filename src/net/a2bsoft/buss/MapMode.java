@@ -68,6 +68,7 @@ public class MapMode extends MapActivity implements LocationListener {
  	List<Overlay> mapOverlays;
  	private Drawable busstopDrawable;
  	private Bitmap myLocationDrawable;
+    private LocationManager lm;
 	
 	private List<BusStop> stops;
 
@@ -92,9 +93,10 @@ public class MapMode extends MapActivity implements LocationListener {
         
 		mapCont = mapView.getController();
 
-		LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 50.0f, this);
 		lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000L, 50.0f, this);
+
 
 		mapOverlays = mapView.getOverlays();
 		busstopDrawable = this.getResources().getDrawable(R.drawable.busstop_blue);
@@ -297,6 +299,7 @@ public class MapMode extends MapActivity implements LocationListener {
 		protected String doInBackground(String... arg0) {
 //	        Testing
 			SaxFeedParser superParser = new SaxFeedParser("http://folk.ntnu.no/martinmi/bus_data.xml");
+//            SaxFeedParser superParser = new SaxFeedParser(getString(R.string.mapmode_url));
 			stops = superParser.parse();
 			int counter = 0;
         	Iterator<BusStop> iterator = stops.iterator();
@@ -328,4 +331,18 @@ public class MapMode extends MapActivity implements LocationListener {
         super.onDestroy();
         Bus.tracker.stop();
       }
+
+    protected void onPause(){
+        super.onPause();
+        lm.removeUpdates(this);
+    }
+
+    protected void onResume(){
+        super.onResume();
+        if (lm != null){
+            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 50.0f, this);
+		    lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000L, 50.0f, this);
+        }
+    }
+
 }

@@ -42,6 +42,11 @@
     <string name="mapmode_instructions">Vent på at holdeplassene skal tegnes (tar litt tid).
     	  		                        Trykk så på holdeplassen du vil reise til.</string>
     <string name="mapmode_instructions_title">Hvordan bruke kartmodus</string>
+    <string name="mapmode_warning">Kartmodus funksjonen er basert på data fra Open Streetmap. Dette er brukergenerert data og følgende må taes hensyn til når du b
+    bruker kartmodus. 1) Holdeplass posisjoner er ikke garantert 100% korrekt navngitt eller plassert. 2) Holdeplass posisjoner mangler og oversikten er desverre ikke fullstendig
+    </string>
+
+    <string name="mapmode_url">http://www.informationfreeway.org/api/0.6/node[highway=bus_stop][bbox=10.2875,63.3656,10.5399,63.4523]</string>
     
     <string name="time_choices">Velg tid</string>
     <string-array name="times_array">
@@ -50,6 +55,12 @@
         <item>Etter</item>
         <item>Være der til</item>
     </string-array>
+
+    <string name="next">Neste</string>
+    <string name="before">Før</string>
+    <string name="after">Etter</string>
+    <string name="be_there_before">Være der til</string>
+    <string name="to_be_there_before">for å være der til</string>
     
     <dimen name="sixteen_sp">16sp</dimen>
     <dimen name="twenty_sp">20sp</dimen>

@@ -155,16 +155,16 @@ public class ToAndFrom extends Activity {
 		String query = "Neste buss fra "+ fromTextField.getText().toString() + " til " + toTextField.getText().toString();
 		
 		if(timeChoiceString != null){
-			if(timeChoiceString.equals("Etter")){
-				query = query + " etter " + mPickTime.getText().toString() ;
+			if(timeChoiceString.equals(getString(R.string.after))){
+				query = query +" "+ getString(R.string.after) +" "+ mPickTime.getText().toString() ;
 			}
 			
-			if(timeChoiceString.equals("F�r")){
-				query = query + " f�r " + mPickTime.getText().toString() ;
+			if(timeChoiceString.equals(getString(R.string.before))){
+				query = query +" "+ getString(R.string.before)+" "+ mPickTime.getText().toString() ;
 			}
 			
-			if(timeChoiceString.equals("V�re der til")){
-				query = query +" for � v�re der til " + mPickTime.getText().toString() ;
+			if(timeChoiceString.equals(getString(R.string.be_there_before))){
+				query = query +" "+getString(R.string.to_be_there_before)+" " + mPickTime.getText().toString() ;
 			}
 			
 			
