@@ -297,9 +297,7 @@ public class MapMode extends MapActivity implements LocationListener {
 
 		@Override
 		protected String doInBackground(String... arg0) {
-//	        Testing
-			SaxFeedParser superParser = new SaxFeedParser("http://folk.ntnu.no/martinmi/bus_data.xml");
-//            SaxFeedParser superParser = new SaxFeedParser(getString(R.string.mapmode_url));
+            SaxFeedParser superParser = new SaxFeedParser(getString(R.string.mapmode_url));
 			stops = superParser.parse();
 			int counter = 0;
         	Iterator<BusStop> iterator = stops.iterator();

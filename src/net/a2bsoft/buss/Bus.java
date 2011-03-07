@@ -39,22 +39,30 @@ public class Bus extends TabActivity {
 	    setContentView(R.layout.main);
 	    Resources res = getResources(); 
 	    TabHost tabHost = getTabHost();
+
 	    TabHost.TabSpec spec;
 	    Intent intent;
 	    
 		//Google Analytics tracker object
 		tracker = GoogleAnalyticsTracker.getInstance();
 		tracker.start(Bus.TRACKER_UA, this);
-		tracker.trackPageView("/0_5_3_Code_10");
+		tracker.trackPageView("/0_6_0_Code_12");
 	    
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
-	    
+
+
 	    intent = new Intent().setClass(this, Semantic.class);
 	    spec = tabHost.newTabSpec("semantic").setIndicator(res.getString(R.string.semantic_tab),
 	                      res.getDrawable(R.drawable.ic_tab_semantic))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
+
+//        intent = new Intent().setClass(this, Favourites.class);
+//	    spec = tabHost.newTabSpec("favourites").setIndicator(res.getString(R.string.favourites_tab),
+//	                      res.getDrawable(R.drawable.ic_tab_favourites))
+//	                  .setContent(intent);
+//	    tabHost.addTab(spec);
 
 	    
 	    intent = new Intent().setClass(this, ToAndFrom.class);
@@ -62,6 +70,7 @@ public class Bus extends TabActivity {
 	                      res.getDrawable(R.drawable.ic_tab_toandfrom))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
+
 	    
 	    intent = new Intent().setClass(this, MapMode.class);
 	    spec = tabHost.newTabSpec("mapmode").setIndicator(res.getString(R.string.mapmode_tab),
