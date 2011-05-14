@@ -27,6 +27,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import com.sun.tools.corba.se.idl.constExpr.And;
 
 /**
  * Simple notes database access helper class. Defines the basic CRUD operations
@@ -49,6 +50,7 @@ public class QueryDb {
     public static final String KEY_PLACENAME="place_name";
     
     public static final String KEY_STOP_ID="_id";
+    public static final String KEY_STOP_LOC_ID = "loc_id";
     public static final String KEY_STOP_NAME="name";
     public static final	String KEY_STOP_LATITUDE="latitude";
     public static final String KEY_STOP_LONGITUDE="longitude";
@@ -71,12 +73,12 @@ public class QueryDb {
     
     private static final String DATABASE_BUSSTOP_TABLE = "busstops";
     private static final String DATABASE_CREATE_BUSSTOP =
-    	"create table busstops (_id integer primary key autoincrement, name varchar(150) not null, latitude real not null, longitude real not null);";
+    	"create table busstops (_id integer primary key, loc_id integer not null,name varchar(150) not null, latitude real not null, longitude real not null);";
     
     
     private static final String DATABASE_NAME = "data";
     private static final String DATABASE_TABLE = "notes";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 9;
 
     private final Context mCtx;
 
@@ -174,9 +176,11 @@ public class QueryDb {
     	return mDb.query(true, DATABASE_PLACE_TABLE, new String[]{KEY_PLACEID,KEY_PLACENAME},null, null, null, null, null, null);
     }
     
-    public long createBusstop(String name, double latitude, double longitude){
+    public long createBusstop(int id, int loc_id, String name, double latitude, double longitude){
     	Log.w(TAG, "ADDING BUSTTOP");
     	ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_STOP_ID, id);
+        initialValues.put(KEY_STOP_LOC_ID, loc_id);
     	initialValues.put(KEY_STOP_NAME, name);
     	initialValues.put(KEY_STOP_LATITUDE, latitude);
     	initialValues.put(KEY_STOP_LONGITUDE, longitude);
@@ -185,6 +189,22 @@ public class QueryDb {
     
     public Cursor fetchAllBusstops(){
     	return mDb.query(true, DATABASE_BUSSTOP_TABLE, new String[]{KEY_STOP_NAME, KEY_STOP_LATITUDE, KEY_STOP_LONGITUDE},null, null, null, null, null, null);
+    }
+
+    public Cursor fetchAllBusstopsByLatLong(double maxLat, double minLat, double maxLong, double minLong){
+        maxLat = 63.431359;
+        minLat = 63.429286;
+
+        maxLong = 10.386200;
+        minLong = 10.375857;
+        //elvegata lat 63.429286
+        //sandgata lat 63.431359
+        //venstre 10.375857
+        //høyre   10.386200
+
+    	return mDb.query(true, DATABASE_BUSSTOP_TABLE, new String[]{KEY_STOP_NAME, KEY_STOP_LATITUDE, KEY_STOP_LONGITUDE}
+                ,KEY_STOP_LATITUDE + " BETWEEN " + minLat + " AND " + maxLat+ " AND " + KEY_STOP_LONGITUDE + " BETWEEN " + minLong + " AND " + maxLong
+                , null, null, null, null, null);
     }
     
 //    public Cursor numberOfBusstops(){

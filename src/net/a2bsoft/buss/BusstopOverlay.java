@@ -3,7 +3,10 @@ package net.a2bsoft.buss;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Canvas;
 import android.util.Log;
+import android.view.MotionEvent;
+import com.google.android.maps.MapView;
 import net.a2bsoft.buss.http.SendQuery;
 import net.a2bsoft.buss.parser.BusStop;
 import android.app.AlertDialog;
@@ -142,6 +145,12 @@ public class BusstopOverlay extends ItemizedOverlay<OverlayItem> {
         return true;
     }
 
+    @Override
+    public void draw(final Canvas canvas, MapView mapView, final boolean shadow){
+        super.draw(canvas,mapView,shadow);
+
+    }
+
     private class getAnswerTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... item) {
@@ -175,7 +184,6 @@ public class BusstopOverlay extends ItemizedOverlay<OverlayItem> {
         }
 
     }
-
 
 }
 
