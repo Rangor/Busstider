@@ -24,6 +24,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TabHost;
+import net.a2bsoft.buss.http.Realtime;
 
 public class Bus extends TabActivity {
 	
@@ -65,7 +66,7 @@ public class Bus extends TabActivity {
 //	    tabHost.addTab(spec);
 
 	    
-	    intent = new Intent().setClass(this, ToAndFrom.class);
+	    intent = new Intent().setClass(this, RealtimeActivity.class);
 	    spec = tabHost.newTabSpec("toandfrom").setIndicator(res.getString(R.string.toandfrom_tab),
 	                      res.getDrawable(R.drawable.ic_tab_toandfrom))
 	                  .setContent(intent);
@@ -78,6 +79,7 @@ public class Bus extends TabActivity {
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 	    
-	    tabHost.setCurrentTab(settings.getInt("DEFAULT_GUI", 1));
+	    //tabHost.setCurrentTab(settings.getInt("DEFAULT_GUI", 3));
+        tabHost.setCurrentTab(2);
 	}
 }

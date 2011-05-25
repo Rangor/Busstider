@@ -1,7 +1,7 @@
 package net.a2bsoft.buss.parser;
 
 import android.content.Context;
-import com.sun.codemodel.internal.fmt.JSerializedObject;
+//import com.sun.codemodel.internal.fmt.JSerializedObject;
 import net.a2bsoft.buss.db.QueryDb;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,17 +37,19 @@ public class JsonParser {
 
 
 
-                JSONArray busstopArray = busstopsJson.getJSONArray("stops");
+                JSONArray busstopArray = busstopsJson.getJSONArray("busStops");
 
-                //System.out.println("Antall busstops! - " + busstopArray.length());
+                System.out.println("Antall busstops! - " + busstopArray.length());
 
                 int i = 0;
 
                 while (i < busstopArray.length()){
                     JSONObject jsonStop = busstopArray.getJSONObject(i);
-                    mDbHelper.createBusstop(jsonStop.getInt("id"), jsonStop.getInt("locationid"), jsonStop.getString("name"), jsonStop.getDouble("latitude"), jsonStop.getDouble("longitude"));
+                    mDbHelper.createBusstop(jsonStop.getInt("busStopId"), jsonStop.getInt("locationId"), jsonStop.getString("name"), jsonStop.getDouble("latitude"), jsonStop.getDouble("longitude"));
                     i++;
                 }
+
+                mDbHelper.close();
 
             } catch (JSONException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

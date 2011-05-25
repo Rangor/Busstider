@@ -118,36 +118,36 @@ public class MapMode extends MapActivity implements LocationListener {
         mDbHelper = new QueryDb(this);
         mDbHelper.open();
 
-        //stopsCursor = mDbHelper.fetchAllBusstops();
-        stopsCursor = mDbHelper.fetchAllBusstopsByLatLong(10,10,10,10);
+        stopsCursor = mDbHelper.fetchAllBusstops();
+        //stopsCursor = mDbHelper.fetchAllBusstopsByLatLong(10,10,10,10);
         startManagingCursor(stopsCursor);
         populateBusstopList();
 
         //Create a list of BusStops from the DB
-//        if (stopsCursor.getCount() > 1) {
-//            populateBusstopList();
-//        } else {
-//
-//            AlertDialog.Builder builder = new AlertDialog.Builder(MapMode.this);
-//
-//            builder.setMessage(getString(R.string.mapmode_download_data_question))
-//                    .setCancelable(false)
-//                    .setPositiveButton(getString(R.string.answer_yes), new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//                            new populateBusstopsDbTask().execute("String");
-//                        }
-//                    })
-//                    .setNegativeButton(getString(R.string.answer_no), new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//                            dialog.cancel();
-//                        }
-//                    });
-//
-//            AlertDialog alert = builder.create();
-//
-//            alert.show();
-//
-//        }
+        if (stopsCursor.getCount() > 1) {
+            populateBusstopList();
+        } else {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(MapMode.this);
+
+            builder.setMessage(getString(R.string.mapmode_download_data_question))
+                    .setCancelable(false)
+                    .setPositiveButton(getString(R.string.answer_yes), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            new populateBusstopsDbTask().execute("String");
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.answer_no), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert = builder.create();
+
+            alert.show();
+
+        }
 
         if (!settings.getBoolean("HAS_READ_INSTRUCTIONS", false)) {
             AlertDialog.Builder secondbuilder = new AlertDialog.Builder(MapMode.this);
@@ -177,8 +177,8 @@ public class MapMode extends MapActivity implements LocationListener {
 
     public void populateBusstopList() {
 
-//        stopsCursor = mDbHelper.fetchAllBusstops();
-        stopsCursor = mDbHelper.fetchAllBusstopsByLatLong(10,10,10,10);
+        stopsCursor = mDbHelper.fetchAllBusstops();
+//        stopsCursor = mDbHelper.fetchAllBusstopsByLatLong(10,10,10,10);
         bussStopList = new ArrayList<OverlayItem>();
         if (stopsCursor.moveToFirst()) {
             int nameColumn = stopsCursor.getColumnIndex(QueryDb.KEY_STOP_NAME);

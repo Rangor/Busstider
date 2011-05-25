@@ -27,7 +27,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import com.sun.tools.corba.se.idl.constExpr.And;
 
 /**
  * Simple notes database access helper class. Defines the basic CRUD operations

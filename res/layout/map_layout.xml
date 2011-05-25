@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
     android:layout_width="fill_parent" 
     android:layout_height="fill_parent">
- 
     <com.google.android.maps.MapView 
         android:id="@+id/mapView"
         android:layout_width="fill_parent"
@@ -12,6 +11,30 @@
         android:apiKey="0F2H_rDvwsxsdMdwgOqfZmiOai-FzaD29WT8PyQ"
         android:onClick="mapClickHandler"
         />
+        <ToggleButton
+            android:id="@+id/oracle_mode_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="Orakel modus av"
+            android:textOn="Orakel modus på"
+            android:layout_alignParentRight="true"
+    />
+               <ToggleButton
+            android:id="@+id/realtime_mode_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="Sanntidsmodus av"
+            android:textOn="Sannitdsmodus på"
+            android:layout_toLeftOf="@id/oracle_mode_button"
+    />
+            <ToggleButton
+            android:id="@+id/filter_stops_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="Viser til sentrum"
+            android:textOn="Viser fra sentrum"
+            android:layout_toLeftOf="@id/realtime_mode_button"
+    />
         <!--  
 
       	macbook pro debug: 0F2H_rDvwsxsdMdwgOqfZmiOai-FzaD29WT8PyQ
