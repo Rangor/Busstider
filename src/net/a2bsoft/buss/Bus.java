@@ -80,6 +80,6 @@ public class Bus extends TabActivity {
 	    tabHost.addTab(spec);
 	    
 	    //tabHost.setCurrentTab(settings.getInt("DEFAULT_GUI", 3));
-        tabHost.setCurrentTab(2);
+        tabHost.setCurrentTab(1);
 	}
 }

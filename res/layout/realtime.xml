@@ -4,11 +4,18 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <TextView
-            android:id="@+id/text"
+            android:id="@+id/realtime_list_header_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="text"
 
             />
+
+        <ListView android:id="@+id/android:list"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:dividerHeight="@dimen/list_pad"
+          android:layout_below="@id/realtime_list_header_text"
+    />
 
 </RelativeLayout>
