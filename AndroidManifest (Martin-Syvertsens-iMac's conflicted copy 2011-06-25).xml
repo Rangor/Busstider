@@ -6,7 +6,7 @@
       android:debuggable="true">
      
           
-    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
     <uses-library android:name="com.google.android.maps" />  
         <activity android:name=".Bus"
                   android:label="@string/app_name"
@@ -24,8 +24,6 @@
         <activity android:name="ToAndFrom"></activity>
         <activity android:name="Favourites"></activity>
         <activity android:name="MapMode"></activity>
-        <activity android:name="RealtimeActivity"></activity>
-        <activity android:name="SelectRealtimeStopActivity"></activity>
         
         
         

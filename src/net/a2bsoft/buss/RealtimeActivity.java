@@ -1,15 +1,26 @@
 package net.a2bsoft.buss;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import com.google.android.maps.ItemizedOverlay;
+import com.google.android.maps.MapView;
+import com.google.android.maps.OverlayItem;
 import net.a2bsoft.buss.http.Realtime;
+import net.a2bsoft.buss.http.SendQuery;
 import no.norrs.busbuddy.pub.api.model.Departure;
 import org.joda.time.LocalDateTime;
 
@@ -48,6 +59,11 @@ public class RealtimeActivity extends ListActivity {
         departureListAdapter = new DepartureListAdapter(this, R.layout.realtime_item, departureList);
         this.setListAdapter(departureListAdapter);
     }
+
+    public void selectStopFromMapButtonHandler(View target){
+        startActivity(new Intent(RealtimeActivity.this,SelectRealtimeStopActivity.class));
+    }
+
 
     public class DepartureListAdapter extends ArrayAdapter<Departure> {
         private final List<Departure> departureList;
@@ -94,5 +110,7 @@ public class RealtimeActivity extends ListActivity {
         }
 
     }
+
+
 
 }
